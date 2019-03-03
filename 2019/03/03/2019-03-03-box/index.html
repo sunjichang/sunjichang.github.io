@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="author" content="sunjichang&lt;sunyun898@sina.com&gt;">
+  <meta name="designer" content="sunjichang&lt;sunyun898@sina.com&gt;">
+  <meta name="keywords" content="前端博客 个人博客">
+  <meta name="description" content="孙继昌的Blog">
+  <meta name="rating" content="general"> 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="/images/favicon.ico">
+  <!-- Title -->
+  
+  <title>深入理解盒模型 | 孙继昌</title>
+  <link rel="stylesheet" href="/css/f25.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  
+</head>
+</head>
+<body>
+    <div class="wrapper header-wrapper">
+    <div class="container header-nav-wrapper">
+        <div class="logo"><a href="/"><h1 class="title">孙继昌</h1></a></div>
+        <div class="nav-wrapper">
+            
+                <a href="/">首页</a>
+            
+                <a href="/">ABOUT</a>
+            
+        </div>
+        <span class="btn-menu" id="J_header_menu">
+            <div class="inner">
+                <span class="line line-01"></span>
+                <span class="line line-02"></span>
+                <span class="line line-03"></span>
+            </div>
+        </span>
+        <div class="wrapper mb-nav-wrapper" id="J_header_menu_list">
+            <div class="wrapper mb-nav-container">
+                
+                    <a href="/">首页</a>
+                
+                    <a href="/">ABOUT</a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="body-wrapper" id="J_body">
+        <div class="wrapper post-banner">
+    <div class="container post-banner-container">
+        <h2 class="wrapper title">深入理解盒模型</h2>
+        <div class="wrapper tips">
+            <span>Author：</span><span>孙继昌</span> | <span>Date: </span><span>2019-03-03</span> | <span>Category：</span><span><a href="/categories/前端/">前端</a></span>
+        </div>
+    </div>
+</div>
+<div class="wrapper main-wrapper">
+    <div class="sub-container post-content">
+        <h1 id="深入理解CSS盒模型"><a href="#深入理解CSS盒模型" class="headerlink" title="深入理解CSS盒模型"></a>深入理解CSS盒模型</h1><h5 id="如果你在面试的时候面试官让你谈谈对盒模型的理解，你是不是不知从何谈起。这种看似简单的题其实是最不好答的。"><a href="#如果你在面试的时候面试官让你谈谈对盒模型的理解，你是不是不知从何谈起。这种看似简单的题其实是最不好答的。" class="headerlink" title="如果你在面试的时候面试官让你谈谈对盒模型的理解，你是不是不知从何谈起。这种看似简单的题其实是最不好答的。"></a>如果你在面试的时候面试官让你谈谈对盒模型的理解，你是不是不知从何谈起。这种看似简单的题其实是最不好答的。</h5><h5 id="下面本文章将会从以下几个方面谈谈盒模型。"><a href="#下面本文章将会从以下几个方面谈谈盒模型。" class="headerlink" title="下面本文章将会从以下几个方面谈谈盒模型。"></a>下面本文章将会从以下几个方面谈谈盒模型。</h5><ul>
+<li>基本概念：标准模型 和IE模型</li>
+<li>CSS如何设置这两种模型</li>
+<li>JS如何设置获取盒模型对应的宽和高</li>
+<li>实例题（根据盒模型解释边距重叠）</li>
+<li>BFC（边距重叠解决方案）</li>
+</ul>
+<blockquote>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3></blockquote>
+<h5 id="盒模型的组成大家肯定都懂，由里向外content-padding-border-margin"><a href="#盒模型的组成大家肯定都懂，由里向外content-padding-border-margin" class="headerlink" title="盒模型的组成大家肯定都懂，由里向外content,padding,border,margin."></a>盒模型的组成大家肯定都懂，由里向外content,padding,border,margin.</h5><h5 id="盒模型是有两种标准的，一个是标准模型，一个是IE模型。"><a href="#盒模型是有两种标准的，一个是标准模型，一个是IE模型。" class="headerlink" title="盒模型是有两种标准的，一个是标准模型，一个是IE模型。"></a>盒模型是有两种标准的，一个是标准模型，一个是IE模型。</h5><p><img src="/images/2019-03-03-box/box_standard.png" alt="box"></p>
+<p><img src="/images/2019-03-03-box/box_ie.png" alt="box"></p>
+<h5 id="从上面两图不难看出在标准模型中，盒模型的宽高只是内容（content）的宽高，"><a href="#从上面两图不难看出在标准模型中，盒模型的宽高只是内容（content）的宽高，" class="headerlink" title="从上面两图不难看出在标准模型中，盒模型的宽高只是内容（content）的宽高，"></a>从上面两图不难看出在标准模型中，盒模型的宽高只是内容（content）的宽高，</h5><h5 id="而在IE模型中盒模型的宽高是内容-content-填充-padding-边框-border-的总宽高。"><a href="#而在IE模型中盒模型的宽高是内容-content-填充-padding-边框-border-的总宽高。" class="headerlink" title="而在IE模型中盒模型的宽高是内容(content)+填充(padding)+边框(border)的总宽高。"></a>而在IE模型中盒模型的宽高是内容(content)+填充(padding)+边框(border)的总宽高。</h5><blockquote>
+<h3 id="css如何设置两种模型"><a href="#css如何设置两种模型" class="headerlink" title="css如何设置两种模型"></a>css如何设置两种模型</h3></blockquote>
+<h5 id="这里用到了CSS3-的属性-box-sizing"><a href="#这里用到了CSS3-的属性-box-sizing" class="headerlink" title="这里用到了CSS3 的属性 box-sizing"></a>这里用到了CSS3 的属性 box-sizing</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/* 标准模型 */</span><br><span class="line">box-sizing:content-box;</span><br><span class="line"></span><br><span class="line"> /*IE模型*/</span><br><span class="line">box-sizing:border-box;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="JS获取宽高"><a href="#JS获取宽高" class="headerlink" title="JS获取宽高"></a>JS获取宽高</h3></blockquote>
+<h5 id="通过JS获取盒模型对应的宽和高，有以下几种方法："><a href="#通过JS获取盒模型对应的宽和高，有以下几种方法：" class="headerlink" title="通过JS获取盒模型对应的宽和高，有以下几种方法："></a>通过JS获取盒模型对应的宽和高，有以下几种方法：</h5><h5 id="为了方便书写，以下用dom来表示获取的HTML的节点。"><a href="#为了方便书写，以下用dom来表示获取的HTML的节点。" class="headerlink" title="为了方便书写，以下用dom来表示获取的HTML的节点。"></a>为了方便书写，以下用dom来表示获取的HTML的节点。</h5><ol>
+<li>dom.style.width/height </li>
+</ol>
+<ul>
+<li>这种方式只能取到dom元素内联样式所设置的宽高，也就是说如果该节点的样式是在style标签中或外联的CSS文件中设置的话，通过这种方法是获取不到dom的宽高的。</li>
+</ul>
+<ol start="2">
+<li>dom.currentStyle.width/height </li>
+</ol>
+<ul>
+<li>这种方式获取的是在页面渲染完成后的结果，就是说不管是哪种方式设置的样式，都能获取到。<br>　　但这种方式只有IE浏览器支持。</li>
+</ul>
+<ol start="3">
+<li>window.getComputedStyle(dom).width/height</li>
+</ol>
+<ul>
+<li>这种方式的原理和2是一样的，这个可以兼容更多的浏览器，通用性好一些。</li>
+</ul>
+<ol start="4">
+<li>dom.getBoundingClientRect().width/height</li>
+</ol>
+<ul>
+<li>这种方式是根据元素在视窗中的绝对位置来获取宽高的</li>
+</ul>
+<ol start="5">
+<li>dom.offsetWidth/offsetHeight</li>
+</ol>
+<ul>
+<li>这个就没什么好说的了，最常用的，也是兼容最好的。</li>
+</ul>
+<blockquote>
+<h3 id="边距重叠"><a href="#边距重叠" class="headerlink" title="边距重叠"></a>边距重叠</h3></blockquote>
+<h5 id="什么是边距重叠"><a href="#什么是边距重叠" class="headerlink" title="什么是边距重叠"></a>什么是边距重叠</h5><p>如下图，父元素没有设置margin-top，而子元素设置了margin-top：20px;可以看出，父元素也一起有了边距。</p>
+<p><img src="/images/2019-03-03-box/bfc_1.png" alt="box"></p>
+<p>上图的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        *&#123;</span><br><span class="line">            margin:0;</span><br><span class="line">            padding:0;</span><br><span class="line">        &#125;</span><br><span class="line">        .demo&#123;</span><br><span class="line">            height:100px;</span><br><span class="line">            background: #eee;</span><br><span class="line">        &#125;</span><br><span class="line">        .parent&#123;</span><br><span class="line">            height:200px;</span><br><span class="line">            background: #88f;</span><br><span class="line">        &#125;</span><br><span class="line">        .child&#123;</span><br><span class="line">            height:100px;</span><br><span class="line">            margin-top:20px;</span><br><span class="line">            background: #0ff;</span><br><span class="line">            width:200px;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;section class=&quot;demo&quot;&gt;</span><br><span class="line">        &lt;h2&gt;此部分是能更容易看出让下面的块的margin-top。&lt;/h2&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">    &lt;section class = &quot;parent&quot;&gt;</span><br><span class="line">        &lt;article class=&quot;child&quot;&gt;</span><br><span class="line">            &lt;h2&gt;子元素&lt;/h2&gt;</span><br><span class="line">            margin-top:20px;</span><br><span class="line">        &lt;/article&gt;</span><br><span class="line">        &lt;h2&gt;父元素&lt;/h2&gt;</span><br><span class="line">            没有设置margin-top</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="边距重叠解决方案-BFC"><a href="#边距重叠解决方案-BFC" class="headerlink" title="边距重叠解决方案(BFC)"></a>边距重叠解决方案(BFC)</h3></blockquote>
+<h5 id="首先要明确BFC是什么意思，其全英文拼写为-Block-Formatting-Context-直译为“块级格式化上下文”"><a href="#首先要明确BFC是什么意思，其全英文拼写为-Block-Formatting-Context-直译为“块级格式化上下文”" class="headerlink" title="首先要明确BFC是什么意思，其全英文拼写为 Block Formatting Context 直译为“块级格式化上下文”"></a>首先要明确BFC是什么意思，其全英文拼写为 Block Formatting Context 直译为“块级格式化上下文”</h5><h5 id="BFC的原理"><a href="#BFC的原理" class="headerlink" title="BFC的原理"></a>BFC的原理</h5><ol>
+<li>内部的box会在垂直方向，一个接一个的放置</li>
+<li>每个元素的margin box的左边，与包含块border 4. 3. box的左边相接触（对于从做往右的格式化，否则相反）<br>box垂直方向的距离由margin决定，属于同一个bfc的两个相邻box的margin会发生重叠</li>
+<li>bfc的区域不会与浮动区域的box重叠</li>
+<li>bfc是一个页面上的独立的容器，外面的元素不会影响bfc里的元素，反过来，里面的也不会影响外面的</li>
+<li>计算bfc高度的时候，浮动元素也会参与计算<h5 id="怎么取创建bfc"><a href="#怎么取创建bfc" class="headerlink" title="怎么取创建bfc"></a>怎么取创建bfc</h5></li>
+<li>float属性不为none（脱离文档流）</li>
+<li>position为absolute或fixed</li>
+<li>display为inline-block,table-cell,table-caption,flex,inine-flex</li>
+<li>overflow不为visible</li>
+<li>根元素<h5 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h5></li>
+<li>自适应两栏布局</li>
+<li>清除内部浮动 </li>
+<li>防止垂直margin重叠<h5 id="看一个垂直margin重叠例子"><a href="#看一个垂直margin重叠例子" class="headerlink" title="看一个垂直margin重叠例子"></a>看一个垂直margin重叠例子</h5>代码</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        *&#123;</span><br><span class="line">            margin:0;</span><br><span class="line">            padding:0;</span><br><span class="line">        &#125;</span><br><span class="line">        .top&#123;</span><br><span class="line">            background: #0ff;</span><br><span class="line">            height:100px;</span><br><span class="line">            margin-bottom:30px;</span><br><span class="line">        &#125;</span><br><span class="line">        .bottom&#123;</span><br><span class="line">            height:100px;</span><br><span class="line">            margin-top:50px;</span><br><span class="line">            background: #ddd;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">    &lt;section class=&quot;top&quot;&gt;</span><br><span class="line">        &lt;h1&gt;上&lt;/h1&gt;</span><br><span class="line">        margin-bottom:30px;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">    &lt;section class=&quot;bottom&quot;&gt;</span><br><span class="line">        &lt;h1&gt;下&lt;/h1&gt;</span><br><span class="line">        margin-top:50px;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p> 效果图</p>
+<p> <img src="/images/2019-03-03-box/bfc_2.png" alt="box"></p>
+<h5 id="用bfc可以解决垂直margin重叠的问题"><a href="#用bfc可以解决垂直margin重叠的问题" class="headerlink" title="用bfc可以解决垂直margin重叠的问题"></a>用bfc可以解决垂直margin重叠的问题</h5><h5 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;section class=&quot;top&quot;&gt;</span><br><span class="line">        &lt;h1&gt;上&lt;/h1&gt;</span><br><span class="line">        margin-bottom:30px;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 给下面这个块添加一个父元素，在父元素上创建bfc --&gt;</span><br><span class="line">    &lt;div style=&quot;overflow:hidden&quot;&gt;</span><br><span class="line">        &lt;section class=&quot;bottom&quot;&gt;</span><br><span class="line">            &lt;h1&gt;下&lt;/h1&gt;</span><br><span class="line">            margin-top:50px;</span><br><span class="line">        &lt;/section&gt;</span><br><span class="line">    &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h5><p><img src="/images/2019-03-03-box/bfc_3.png" alt="box"></p>
+<h5 id="关于bfc的应用的案例这里就不在一一举出了，大家去网上找一些其他的文章看一下。"><a href="#关于bfc的应用的案例这里就不在一一举出了，大家去网上找一些其他的文章看一下。" class="headerlink" title="关于bfc的应用的案例这里就不在一一举出了，大家去网上找一些其他的文章看一下。"></a>关于bfc的应用的案例这里就不在一一举出了，大家去网上找一些其他的文章看一下。</h5>
+    </div>
+</div>
+        
+<div class="tips-top-wrapper">
+    <span class="tip-top-container" onclick="scrollToWindowTop()">
+        <span class="l-bar"></span>
+        <span class="r-bar"></span>
+    </span>
+</div>
+<div class="wrapper footer-wrapper">
+    <div class="container"><span class="copyright">&copy; 2019 孙继昌 All Rights Reserved 京ICP备16059664号-2</span></div>
+</div>
+    </div>
+    <script src="/js/f25.js"></script>
+</body>
+</html>
