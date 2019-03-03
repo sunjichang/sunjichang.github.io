@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="author" content="sunjichang&lt;sunyun898@sina.com&gt;">
+  <meta name="designer" content="sunjichang&lt;sunyun898@sina.com&gt;">
+  <meta name="keywords" content="前端博客 个人博客">
+  <meta name="description" content="孙继昌的Blog">
+  <meta name="rating" content="general"> 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="/images/favicon.ico">
+  <!-- Title -->
+  
+  <title>Nginx跨域请求配置 | 孙继昌</title>
+  <link rel="stylesheet" href="/css/f25.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  
+</head>
+</head>
+<body>
+    <div class="wrapper header-wrapper">
+    <div class="container header-nav-wrapper">
+        <div class="logo"><a href="/"><h1 class="title">孙继昌</h1></a></div>
+        <div class="nav-wrapper">
+            
+                <a href="/">首页</a>
+            
+                <a href="/">ABOUT</a>
+            
+        </div>
+        <span class="btn-menu" id="J_header_menu">
+            <div class="inner">
+                <span class="line line-01"></span>
+                <span class="line line-02"></span>
+                <span class="line line-03"></span>
+            </div>
+        </span>
+        <div class="wrapper mb-nav-wrapper" id="J_header_menu_list">
+            <div class="wrapper mb-nav-container">
+                
+                    <a href="/">首页</a>
+                
+                    <a href="/">ABOUT</a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="body-wrapper" id="J_body">
+        <div class="wrapper post-banner">
+    <div class="container post-banner-container">
+        <h2 class="wrapper title">Nginx跨域请求配置</h2>
+        <div class="wrapper tips">
+            <span>Author：</span><span>Jin</span> | <span>Date: </span><span>2018-12-18</span> | <span>Category：</span><span><a href="/categories/后端/">后端</a></span>
+        </div>
+    </div>
+</div>
+<div class="wrapper main-wrapper">
+    <div class="sub-container post-content">
+        <p>今天碰到一个跨域请求的问题。<code>a.domain.com</code> 域名下需要请求<code>b.domain.com</code>下的接口。</p>
+<p>不做任何处理，正常情况下回报以下错误：</p>
+<p><img src="/images/2018-12-18-request-cros/01.png" alt="cros"></p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>浏览器端需要对发起的请求做跨域处理。设置<code>xhr</code>的属性<code>withCredentials = true</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.open(<span class="string">'GET'</span>, <span class="string">'http://example.com/'</span>, <span class="literal">true</span>);</span><br><span class="line">xhr.withCredentials = <span class="literal">true</span>;</span><br><span class="line">xhr.send(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+<p>Nginx也需要做对应的<code>Access-Control-Allow-Origin</code>设置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if ($http_origin ~* ^https://[a-z\\d]+\.domain\.com$)&#123;</span><br><span class="line">    add_header &apos;Access-Control-Allow-Origin&apos; &apos;$http_origin&apos;;</span><br><span class="line">    add_header &apos;Access-Control-Allow-Credentials&apos; &apos;true&apos;;</span><br><span class="line">    add_header &apos;Access-Control-Allow-Methods&apos; &apos;GET,POST,OPTIONS&apos;;</span><br><span class="line">    add_header &apos;Access-Control-Allow-Headers&apos; &apos;Cookie,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>只要是<code>*.domain.com</code>的域名都可以正常访问。</p>
+</blockquote>
+<p>这样，就可以满足了。</p>
+
+    </div>
+</div>
+        
+<div class="tips-top-wrapper">
+    <span class="tip-top-container" onclick="scrollToWindowTop()">
+        <span class="l-bar"></span>
+        <span class="r-bar"></span>
+    </span>
+</div>
+<div class="wrapper footer-wrapper">
+    <div class="container"><span class="copyright">&copy; 2019 孙继昌 All Rights Reserved 京ICP备16059664号-2</span></div>
+</div>
+    </div>
+    <script src="/js/f25.js"></script>
+</body>
+</html>
