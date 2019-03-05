@@ -64,12 +64,12 @@
 </div>
 <div class="wrapper main-wrapper">
     <div class="sub-container post-content">
-        <p><img src="/images/2019-03-05-process/process.jpg" alt="process"></p>
-<blockquote>
+        <blockquote>
 <h3 id="1-进程的概念"><a href="#1-进程的概念" class="headerlink" title="1. 进程的概念"></a>1. 进程的概念</h3></blockquote>
+<p><img src="/images/2019-03-05-process/process.jpg" alt="process"></p>
 <p>平时在使用电脑的过程中，可能会登陆QQ，一边开着网易云音乐，一边开着chrome浏览器或者火狐浏览器在网页上看视频，甚至还会打开word软件，编辑文档。</p>
 <p>假设现在电脑上同时打开这四个程序，QQ，网易云音乐，chrome浏览器，word软件，此时对电脑主机来说，CPU(中央处理器)会在这打开的四个程序中依次循环切换。</p>
-<p> 现在一颗主流的CPU的主频为2.5Ghz，其意思就是说在1秒钟内，这颗CPU可以在上述四个程序中来回切换2.5乘以10的9次方次</p>
+<p>现在一颗主流的CPU的主频为2.5Ghz，其意思就是说在1秒钟内，这颗CPU可以在上述四个程序中来回切换2.5乘以10的9次方次</p>
 <p>所以在使用电脑的人看来，电脑是在同时执行这四个程序。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在CPU运行的过程中，每一个CPU时间点内，一核心cpu只能运行一个进程。</span><br></pre></td></tr></table></figure>
 <p>也就是说在某个CPU时间片上，一个CPU核心如果切换到QQ程序时，其余三个程序会被CPU暂停，也即阻塞，不过这个阻塞的时间间隔很短。</p>
