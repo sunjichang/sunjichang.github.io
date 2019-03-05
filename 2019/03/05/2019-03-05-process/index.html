@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="author" content="sunjichang&lt;sunyun898@sina.com&gt;">
+  <meta name="designer" content="sunjichang&lt;sunyun898@sina.com&gt;">
+  <meta name="keywords" content="前端博客 个人博客">
+  <meta name="description" content="孙继昌的Blog">
+  <meta name="rating" content="general"> 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="/images/favicon.ico">
+  <!-- Title -->
+  
+  <title>计算机中的进程与线程 | 孙继昌</title>
+  <link rel="stylesheet" href="/css/f25.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  
+</head>
+</head>
+<body>
+    <div class="wrapper header-wrapper">
+    <div class="container header-nav-wrapper">
+        <div class="logo"><a href="/"><h1 class="title">孙继昌</h1></a></div>
+        <div class="nav-wrapper">
+            
+                <a href="/">首页</a>
+            
+                <a href="/">ABOUT</a>
+            
+        </div>
+        <span class="btn-menu" id="J_header_menu">
+            <div class="inner">
+                <span class="line line-01"></span>
+                <span class="line line-02"></span>
+                <span class="line line-03"></span>
+            </div>
+        </span>
+        <div class="wrapper mb-nav-wrapper" id="J_header_menu_list">
+            <div class="wrapper mb-nav-container">
+                
+                    <a href="/">首页</a>
+                
+                    <a href="/">ABOUT</a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="body-wrapper" id="J_body">
+        <div class="wrapper post-banner">
+    <div class="container post-banner-container">
+        <h2 class="wrapper title">计算机中的进程与线程</h2>
+        <div class="wrapper tips">
+            <span>Author：</span><span>孙继昌</span> | <span>Date: </span><span>2019-03-05</span> | <span>Category：</span><span><a href="/categories/后端/">后端</a></span>
+        </div>
+    </div>
+</div>
+<div class="wrapper main-wrapper">
+    <div class="sub-container post-content">
+        <p><img src="/images/2019-03-05-process/process.jpg" alt="process"></p>
+<blockquote>
+<h3 id="1-进程的概念"><a href="#1-进程的概念" class="headerlink" title="1. 进程的概念"></a>1. 进程的概念</h3><p>平时在使用电脑的过程中，可能会登陆QQ，一边开着网易云音乐，一边开着chrome浏览器或者火狐浏览器在网页上看视频，甚至还会打开word软件，编辑文档。</p>
+</blockquote>
+<p>假设现在电脑上同时打开这四个程序，QQ，网易云音乐，chrome浏览器，word软件，此时对电脑主机来说，CPU(中央处理器)会在这打开的四个程序中依次循环切换。</p>
+<p> 现在一颗主流的CPU的主频为2.5Ghz，其意思就是说在1秒钟内，这颗CPU可以在上述四个程序中来回切换2.5乘以10的9次方次</p>
+<p>所以在使用电脑的人看来，电脑是在同时执行这四个程序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在CPU运行的过程中，每一个CPU时间点内，一核心cpu只能运行一个进程。</span><br></pre></td></tr></table></figure>
+<p>也就是说在某个CPU时间片上，一个CPU核心如果切换到QQ程序时，其余三个程序会被CPU暂停，也即阻塞，不过这个阻塞的时间间隔很短。</p>
+<p>同样的，在某个时刻，当chrome浏览器在运行的时候，其余的三个程序也会被暂停。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当程序切换的时候，需要一个媒介来保存程序的运行，暂停，恢复等信息，这就个媒介就是进程。</span><br></pre></td></tr></table></figure>
+<h3 id="进程的概念"><a href="#进程的概念" class="headerlink" title="进程的概念"></a>进程的概念</h3><ul>
+<li>进程是计算机中的程序关于某数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位，是操作系统的结构基础。</li>
+<li>进程是系统进行资源分配和调度的一个独立单位。</li>
+<li>进程一般由程序，数据集，进程控制块三部分组成：</li>
+</ul>
+<ol>
+<li><p>程序用来描述进程要完成哪些功能以及如何完成</p>
+</li>
+<li><p>数据集是程序在执行过程中所需要使用的资源</p>
+</li>
+<li><p>进程控制块用来记录进程的外部特征，描述进程的执行变化过程，操作系统可以利用它来控制和管理进程，控制块是系统感知进程存在的唯一标志</p>
+</li>
+</ol>
+<blockquote>
+<h3 id="2-线程的概念"><a href="#2-线程的概念" class="headerlink" title="2. 线程的概念"></a>2. 线程的概念</h3></blockquote>
+<p>假设在用浏览器打开一个网页，这时浏览器一边把网页下载到硬盘上，浏览器一边对网页进行渲染，生成用户看到网页。</p>
+<p>在这同时，浏览器还要与网页服务器保持连接。在这个过程中，浏览器会生成多个进程，同时会在这多个进程之间来回切换。</p>
+<p>这多个进程的协作涉及到进程间通信问题，进程间不停的切换造成主机性能上的损失。</p>
+<p>这时就需要一种机制来保存和恢复进程间的通信内容，减少通信所带来的性能损耗，这种机制就是线程</p>
+<p>线程的出现是为了降低上下文切换的消耗，提高系统的并发性，并突破一个进程在一个时间点只能服务一个程序的缺陷，拿到进程内并发成为可能。</p>
+<p>线程也叫轻量级进程 ，是一个基本的CPU执行单元，也是程序执行过程中的最小单元</p>
+<p>线程由线程ID，程序讲数器，寄存器集合和堆栈共同组成。</p>
+<p>线程是进程的一个实体，是cpu调度和分派的基本单位，是比进程更小的能独立运行的基本单位。</p>
+<p>线程的引入减小了程序 并发执行时的开销，提高了操作系统的并发性能。线程没有自己的系统资源。</p>
+<blockquote>
+<h3 id="3-进程与线程的关系"><a href="#3-进程与线程的关系" class="headerlink" title="3. 进程与线程的关系"></a>3. 进程与线程的关系</h3></blockquote>
+<ol>
+<li>一个线程只能属于一个进程 ，而一个进程可以有多个线程，但至少有一个线程</li>
+<li>资源分配给进程，同一个进程的所有线程共享该进程的所有资源</li>
+<li>CPU的资源分给线程，即真正在CPU上运行的是线程</li>
+<li>进程拥有它自己的独立空间。线程是通过进程创建的，在进程之间共享该进程的内存空间</li>
+<li>线程直接访问进程的数据块，进程是将父进程中的数据再复制出一份使用</li>
+<li>进程中的线程间是可以直接通信的，子进程与父进程不能直接通信，但可以通过队列管道相互交流数据</li>
+<li>一个新的线程创建很容易，一个新的进程创建需要从父进程里重新拷贝父进程的所有数据，创建进程会耗费系统资源</li>
+<li>一个进程中的多线程间可以控制其它进程，进程只能控制它的子进程 </li>
+<li>改变主线程优先级会影响线程在进程中的行为，改变父进程不会影响子进程 </li>
+</ol>
+<blockquote>
+<h3 id="4-进程与线程的切换原则"><a href="#4-进程与线程的切换原则" class="headerlink" title="4.进程与线程的切换原则"></a>4.进程与线程的切换原则</h3></blockquote>
+<p>首先要明白的是，进程的切换者是操作系统</p>
+<h4 id="4-1-CPU遇到时间片会切换进程"><a href="#4-1-CPU遇到时间片会切换进程" class="headerlink" title="4.1 CPU遇到时间片会切换进程"></a>4.1 CPU遇到时间片会切换进程</h4><p>在现代操作系统中，不可能只运行一个程序。当操作系统中运行了多个程序的时候，CPU不可能一直执行某一个程序，</p>
+<p>CPU会在操作系统运行的多个程序间来回进行切换，这个CPU的时间片是非常短的。</p>
+<h4 id="4-2-程序遇到IO操作的时候"><a href="#4-2-程序遇到IO操作的时候" class="headerlink" title="4.2 程序遇到IO操作的时候"></a>4.2 程序遇到IO操作的时候</h4><p>例如，在系统上运行了两个程序，程序A和程序B，当程序A在请求某个网页的时候，由于网络的延迟，网页从服务器上响应到本地缓存中需要一些时间</p>
+<p>这个时间相对于CPU来说是很长的，此时CPU就会切换到程序B运行，</p>
+<h4 id="4-3-程序优先级切换"><a href="#4-3-程序优先级切换" class="headerlink" title="4.3 程序优先级切换"></a>4.3 程序优先级切换</h4><p>在操作系统中，通常每生成一个进程，这个进程都会有一个执行的优先级。</p>
+<p>例如在linux系统中，可以使用renice命令来调整进程的运行优先级。</p>
+<p>在某一个时刻，操作系统中运行多个程序时，哪个进程的运行优先级越高，这个进程就先执行。</p>
+<p>原文： <a href="https://www.cnblogs.com/renpingsheng/p/7201597.html" target="_blank" rel="noopener">https://www.cnblogs.com/renpingsheng/p/7201597.html</a></p>
+
+    </div>
+</div>
+        
+<div class="tips-top-wrapper">
+    <span class="tip-top-container" onclick="scrollToWindowTop()">
+        <span class="l-bar"></span>
+        <span class="r-bar"></span>
+    </span>
+</div>
+<div class="wrapper footer-wrapper">
+    <div class="container"><span class="copyright">&copy; 2019 孙继昌 All Rights Reserved 京ICP备16059664号-2</span></div>
+</div>
+    </div>
+    <script src="/js/f25.js"></script>
+</body>
+</html>
