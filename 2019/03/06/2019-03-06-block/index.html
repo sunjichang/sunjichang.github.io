@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="author" content="sunjichang&lt;sunyun898@sina.com&gt;">
+  <meta name="designer" content="sunjichang&lt;sunyun898@sina.com&gt;">
+  <meta name="keywords" content="前端博客 个人博客">
+  <meta name="description" content="孙继昌的Blog">
+  <meta name="rating" content="general"> 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="/images/favicon.ico">
+  <!-- Title -->
+  
+  <title>行内元素与块及元素 | 孙继昌</title>
+  <link rel="stylesheet" href="/css/f25.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  
+</head>
+</head>
+<body>
+    <div class="wrapper header-wrapper">
+    <div class="container header-nav-wrapper">
+        <div class="logo"><a href="/"><h1 class="title">孙继昌</h1></a></div>
+        <div class="nav-wrapper">
+            
+                <a href="/">首页</a>
+            
+                <a href="/">ABOUT</a>
+            
+        </div>
+        <span class="btn-menu" id="J_header_menu">
+            <div class="inner">
+                <span class="line line-01"></span>
+                <span class="line line-02"></span>
+                <span class="line line-03"></span>
+            </div>
+        </span>
+        <div class="wrapper mb-nav-wrapper" id="J_header_menu_list">
+            <div class="wrapper mb-nav-container">
+                
+                    <a href="/">首页</a>
+                
+                    <a href="/">ABOUT</a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="body-wrapper" id="J_body">
+        <div class="wrapper post-banner">
+    <div class="container post-banner-container">
+        <h2 class="wrapper title">行内元素与块及元素</h2>
+        <div class="wrapper tips">
+            <span>Author：</span><span>孙继昌</span> | <span>Date: </span><span>2019-03-06</span> | <span>Category：</span><span><a href="/categories/前端面试/">前端面试</a></span>
+        </div>
+    </div>
+</div>
+<div class="wrapper main-wrapper">
+    <div class="sub-container post-content">
+        <p>举例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">行内元素： &lt;span&gt; &lt;a&gt; &lt;b&gt; &lt;img&gt; &lt;input&gt; &lt;strong&gt; &lt;select&gt;...</span><br><span class="line">块级元素： &lt;div&gt; &lt;h1&gt;..&lt;h6&gt; &lt;p&gt; &lt;ul&gt; &lt;li&gt; &lt;ol&gt; &lt;dt&gt; &lt;dt&gt;... h5新增的语义化标签&lt;header&gt;等</span><br><span class="line">空元素： &lt;br&gt; &lt;hr&gt; &lt;img&gt; &lt;input&gt; &lt;link&gt; &lt;meta&gt; ...</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<h4 id="HTML行内元素、块状元素、行内块状元素的区别"><a href="#HTML行内元素、块状元素、行内块状元素的区别" class="headerlink" title="HTML行内元素、块状元素、行内块状元素的区别"></a>HTML行内元素、块状元素、行内块状元素的区别</h4></blockquote>
+<p>HTML可以将元素分类方式分为行内元素、块状元素和行内块状元素三种。首先需要说明的是，这三者是可以互相转换的，使用display属性能够将三者任意转换：</p>
+<ol>
+<li>display:inline;转换为行内元素</li>
+<li>display:block;转换为块状元素</li>
+<li>display:inline-block;转换为行内块状元素</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">        &lt;title&gt;测试案例&lt;/title&gt;</span><br><span class="line">        &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">            span &#123;</span><br><span class="line">                 display: block;</span><br><span class="line">                width: 120px;</span><br><span class="line">                height: 30px;</span><br><span class="line">                background: red;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            div &#123;</span><br><span class="line">                display: inline;</span><br><span class="line">                width: 120px;</span><br><span class="line">                height: 200px;</span><br><span class="line">                background: green;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            i &#123;</span><br><span class="line">                display: inline-block;</span><br><span class="line">                width: 120px;</span><br><span class="line">                height: 30px;</span><br><span class="line">                background: lightblue;</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;/style&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line"></span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;span&gt;行内转块状&lt;/span&gt;</span><br><span class="line">        &lt;div&gt;块状转行内 &lt;/div&gt;</span><br><span class="line">        &lt;i&gt;行内转行内块状&lt;/i&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/2019-03-06-block/block1.png" alt="block"></p>
+<blockquote>
+<h4 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">行内元素最常使用的就是span，其他的只在特定功能下使用，修饰字体&lt;b&gt;和&lt;i&gt;标签，还有&lt;sub&gt;和&lt;sup&gt;这两个标签可以直接做出平方的效果，而不需要类似移动属性的帮助，很实用。</span><br></pre></td></tr></table></figure>
+<p><strong>行内元素特征：</strong></p>
+<ol>
+<li>设置宽高无效</li>
+<li>对margin仅设置左右方向有效，上下无效；padding设置上下左右都有效，即会撑大空间</li>
+<li>不会自动进行换行</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">        &lt;title&gt;测试案例&lt;/title&gt;</span><br><span class="line">        &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">            span &#123;</span><br><span class="line">                width: 120px;</span><br><span class="line">                height: 120px;</span><br><span class="line">                margin: 1000px 20px;</span><br><span class="line">                padding: 50px 40px;</span><br><span class="line">                background: lightblue;</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;/style&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line"></span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;i&gt;不会自动换行&lt;/i&gt;</span><br><span class="line">        &lt;span&gt;行内元素&lt;/span&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/2019-03-06-block/block2.png" alt="block"></p>
+<blockquote>
+<h4 id="块状元素"><a href="#块状元素" class="headerlink" title="块状元素"></a>块状元素</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">块状元素代表性的就是div，其他如p、nav、aside、header、footer、section、article、ul-li、address等等，都可以用div来实现。不过为了可以方便程序员解读代码，一般都会使用特定的语义化标签，使得代码可读性强，且便于查错。</span><br></pre></td></tr></table></figure>
+<p><strong>块状元素特征：</strong></p>
+<ol>
+<li>能够识别宽高</li>
+<li>margin和padding的上下左右均对其有效</li>
+<li>可以自动换行</li>
+<li>多个块状元素标签写在一起，默认排列方式为从上至下</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">        &lt;title&gt;测试案例&lt;/title&gt;</span><br><span class="line">        &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">            div &#123;</span><br><span class="line">                width: 120px;</span><br><span class="line">                height: 120px;</span><br><span class="line">                margin: 50px 50px;</span><br><span class="line">                padding: 50px 40px;</span><br><span class="line">                background: lightblue;</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;/style&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line"></span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;i&gt;自动换行&lt;/i&gt;</span><br><span class="line">        &lt;div&gt;块状元素&lt;/div&gt;</span><br><span class="line">        &lt;div&gt;块状元素&lt;/div&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/2019-03-06-block/block3.png" alt="block"></p>
+<blockquote>
+<h4 id="行内块状元素"><a href="#行内块状元素" class="headerlink" title="行内块状元素"></a>行内块状元素</h4></blockquote>
+<p>行内块状元素综合了行内元素和块状元素的特性，但是各有取舍。因此行内块状元素在日常的使用中，由于其特性，使用的次数也比较多。<br><strong>行内块状元素特征：</strong></p>
+<ol>
+<li>不自动换行</li>
+<li>能够识别宽高</li>
+<li>默认排列方式为从左到右</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">        &lt;title&gt;测试案例&lt;/title&gt;</span><br><span class="line">        &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">            div &#123;</span><br><span class="line">                display: inline-block;</span><br><span class="line">                width: 100px;</span><br><span class="line">                height: 50px;</span><br><span class="line">                background: lightblue;</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;/style&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line"></span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;div&gt;行内块状元素&lt;/div&gt;</span><br><span class="line">        &lt;div&gt;行内块状元素&lt;/div&gt;</span><br><span class="line">        </span><br><span class="line">    &lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/2019-03-06-block/block3.png" alt="block"></p>
+<p>来源：(<a href="https://www.cnblogs.com/ljwk/p/7090320.html" target="_blank" rel="noopener">https://www.cnblogs.com/ljwk/p/7090320.html</a>)</p>
+
+    </div>
+</div>
+        
+<div class="tips-top-wrapper">
+    <span class="tip-top-container" onclick="scrollToWindowTop()">
+        <span class="l-bar"></span>
+        <span class="r-bar"></span>
+    </span>
+</div>
+<div class="wrapper footer-wrapper">
+    <div class="container"><span class="copyright">&copy; 2019 孙继昌 All Rights Reserved 京ICP备16059664号-2</span></div>
+</div>
+    </div>
+    <script src="/js/f25.js"></script>
+</body>
+</html>
