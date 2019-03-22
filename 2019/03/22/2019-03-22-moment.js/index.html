@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="author" content="sunjichang&lt;sunyun898@sina.com&gt;">
+  <meta name="designer" content="sunjichang&lt;sunyun898@sina.com&gt;">
+  <meta name="keywords" content="前端博客 个人博客">
+  <meta name="description" content="孙继昌的Blog">
+  <meta name="rating" content="general"> 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="/images/favicon.ico">
+  <!-- Title -->
+  
+  <title>Moment.js 使用 | 孙继昌</title>
+  <link rel="stylesheet" href="/css/f25.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  
+</head>
+</head>
+<body>
+    <div class="wrapper header-wrapper">
+    <div class="container header-nav-wrapper">
+        <div class="logo"><a href="/"><h1 class="title">孙继昌</h1></a></div>
+        <div class="nav-wrapper">
+            
+                <a href="/">首页</a>
+            
+                <a href="/">ABOUT</a>
+            
+        </div>
+        <span class="btn-menu" id="J_header_menu">
+            <div class="inner">
+                <span class="line line-01"></span>
+                <span class="line line-02"></span>
+                <span class="line line-03"></span>
+            </div>
+        </span>
+        <div class="wrapper mb-nav-wrapper" id="J_header_menu_list">
+            <div class="wrapper mb-nav-container">
+                
+                    <a href="/">首页</a>
+                
+                    <a href="/">ABOUT</a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="body-wrapper" id="J_body">
+        <div class="wrapper post-banner">
+    <div class="container post-banner-container">
+        <h2 class="wrapper title">Moment.js 使用</h2>
+        <div class="wrapper tips">
+            <span>Author：</span><span>孙继昌</span> | <span>Date: </span><span>2019-03-22</span> | <span>Category：</span><span><a href="/categories/前端/">前端</a></span>
+        </div>
+    </div>
+</div>
+<div class="wrapper main-wrapper">
+    <div class="sub-container post-content">
+        <h1 id="Moment-js"><a href="#Moment-js" class="headerlink" title="Moment js"></a>Moment js</h1><blockquote>
+<p>轻量级 JavaScript 日期处理类库</p>
+</blockquote>
+<p>安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install moment --save</span><br></pre></td></tr></table></figure></p>
+<p>引入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import moment from &apos;moment&apos;</span><br><span class="line">import &apos;moment/locale/zh-cn&apos; // 中文</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>格式</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>说明</th>
+<th>返回值例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M</td>
+<td>数字表示的月份，没有前导零</td>
+<td>1到12</td>
+</tr>
+<tr>
+<td>MM</td>
+<td>数字表示的月份，有前导零</td>
+<td>01到12</td>
+</tr>
+<tr>
+<td>MMM</td>
+<td>三个字母缩写表示的月份</td>
+<td>Jan到Dec</td>
+</tr>
+<tr>
+<td>MMMM</td>
+<td>月份，完整的文本格式</td>
+<td>January到December</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>季度</td>
+<td>1到4</td>
+</tr>
+<tr>
+<td>D</td>
+<td>月份中的第几天，没有前导零</td>
+<td>1到31</td>
+</tr>
+<tr>
+<td>DD</td>
+<td>月份中的第几天，有前导零</td>
+<td>01到31</td>
+</tr>
+<tr>
+<td>d</td>
+<td>星期中的第几天，数字表示</td>
+<td>0到6，0表示周日，6表示周六</td>
+</tr>
+<tr>
+<td>ddd</td>
+<td>三个字母表示星期中的第几天</td>
+<td>Sun到Sat</td>
+</tr>
+<tr>
+<td>dddd</td>
+<td>星期几，完整的星期文本</td>
+<td>从Sunday到Saturday</td>
+</tr>
+<tr>
+<td>w</td>
+<td>年份中的第几周</td>
+<td>如42：表示第42周</td>
+</tr>
+<tr>
+<td>YYYY</td>
+<td>四位数字完整表示的年份</td>
+<td>如：2014 或 2000</td>
+</tr>
+<tr>
+<td>YY</td>
+<td>两位数字表示的年份</td>
+<td>如：14 或 98</td>
+</tr>
+<tr>
+<td>A</td>
+<td>大写的AM PM</td>
+<td>AM PM</td>
+</tr>
+<tr>
+<td>a</td>
+<td>小写的am pm</td>
+<td>am pm</td>
+</tr>
+<tr>
+<td>HH</td>
+<td>小时，24小时制，有前导零</td>
+<td>00到23</td>
+</tr>
+<tr>
+<td>H</td>
+<td>小时，24小时制，无前导零</td>
+<td>0到23</td>
+</tr>
+<tr>
+<td>hh</td>
+<td>小时，12小时制，有前导零</td>
+<td>00到12</td>
+</tr>
+<tr>
+<td>h</td>
+<td>小时，12小时制，无前导零</td>
+<td>0到12</td>
+</tr>
+<tr>
+<td>m</td>
+<td>没有前导零的分钟数</td>
+<td>0到59</td>
+</tr>
+<tr>
+<td>mm</td>
+<td>有前导零的分钟数</td>
+<td>00到59</td>
+</tr>
+<tr>
+<td>s</td>
+<td>没有前导零的秒数</td>
+<td>1到59</td>
+</tr>
+<tr>
+<td>ss</td>
+<td>有前导零的描述</td>
+<td>01到59</td>
+</tr>
+<tr>
+<td>X</td>
+<td>Unix时间戳</td>
+<td>1411572969</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>例子</strong></p>
+</blockquote>
+<p>获取当前时间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">moment().format(&apos;YYYY-MM-DD HH:mm:ss&apos;)    // 2019-03-22 14:29:09</span><br><span class="line">moment().format(&apos;YYYY年MM月DD日 dddd&apos;)    // 2019年03月22日 星期五   前提是引入了 ‘moment/locale/zh-cn’</span><br></pre></td></tr></table></figure></p>
+<p>获取所在月份的第一天<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">moment().startOf(&apos;month&apos;).format(&apos;YYYY-MM-DD&apos;) // 2019-03-01</span><br></pre></td></tr></table></figure></p>
+<p>未完待续 后期补充</p>
+
+    </div>
+</div>
+        
+<div class="tips-top-wrapper">
+    <span class="tip-top-container" onclick="scrollToWindowTop()">
+        <span class="l-bar"></span>
+        <span class="r-bar"></span>
+    </span>
+</div>
+<div class="wrapper footer-wrapper">
+    <div class="container"><span class="copyright">&copy; 2019 孙继昌 All Rights Reserved 京ICP备16059664号-2</span></div>
+</div>
+    </div>
+    <script src="/js/f25.js"></script>
+</body>
+</html>
