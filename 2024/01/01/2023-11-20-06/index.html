@@ -1,0 +1,304 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="blog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.3.0">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://xxixx.site">
+    <!--SEO-->
+
+<meta name="keywords" content="面试" />
+
+
+<meta name="description" content="
+
+  
+
+
+
+" />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    前端面试-性能优化 |
+    
+    blog
+</title>
+
+<link rel="alternate" href="/atom.xml" title="blog" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    https://hexo-theme-snippet-1251680922.cos.ap-beijing.myqcloud.com/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Jichang Sun'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://xxixx.site">
+                        blog</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/工具/"><i class="fa "></i>
+                                工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="前端面试-性能优化">
+            
+            前端面试-性能优化
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2024/01/01</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        
+<div class="markmap-container" style="height:600px">
+  <svg data="{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:1,&quot;p&quot;:{&quot;lines&quot;:[0,1]},&quot;v&quot;:&quot;性能优化&quot;,&quot;c&quot;:[{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:2,&quot;p&quot;:{&quot;lines&quot;:[2,3]},&quot;v&quot;:&quot;操作优化&quot;,&quot;c&quot;:[{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[4,5]},&quot;v&quot;:&quot;防抖&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[6,7]},&quot;v&quot;:&quot;节流&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[8,9]},&quot;v&quot;:&quot;webWorker 多线程&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[10,11]},&quot;v&quot;:&quot;事件委托&quot;}]},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:2,&quot;p&quot;:{&quot;lines&quot;:[12,13]},&quot;v&quot;:&quot;Vue&quot;,&quot;c&quot;:[{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[14,15]},&quot;v&quot;:&quot;合理使用Computed缓存数据&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[16,17]},&quot;v&quot;:&quot;路由懒加载&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[18,19]},&quot;v&quot;:&quot;v-for添加key&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[20,21]},&quot;v&quot;:&quot;使用keep-live缓存组件，避免组件重复加载&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[22,23]},&quot;v&quot;:&quot;合理封装复用组件&quot;}]},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:2,&quot;p&quot;:{&quot;lines&quot;:[24,25]},&quot;v&quot;:&quot;体验优化&quot;,&quot;c&quot;:[{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[26,27]},&quot;v&quot;:&quot;骨架屏&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[28,29]},&quot;v&quot;:&quot;首页不需要的资源延迟加载&quot;}]},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:2,&quot;p&quot;:{&quot;lines&quot;:[30,31]},&quot;v&quot;:&quot;网络优化&quot;,&quot;c&quot;:[{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[32,33]},&quot;v&quot;:&quot;DNS预解析 dns-prefetch&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[34,35]},&quot;v&quot;:&quot;服务端 添加缓存标头 Expires/Cache-control, 减轻服务端压力&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[36,37]},&quot;v&quot;:&quot;CDN 分发&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[38,39]},&quot;v&quot;:&quot;使用2～4个域名，增加下载并发线程，HTTP1.1单域名并发6线程&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[40,41]},&quot;v&quot;:&quot;使用HTTP/2, 提升并发到600&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[42,43]},&quot;v&quot;:&quot;开启Nginx，Gzip对静态资源进行压缩&quot;}]},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:2,&quot;p&quot;:{&quot;lines&quot;:[44,45]},&quot;v&quot;:&quot;性能检测方法/工具&quot;,&quot;c&quot;:[{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[46,47]},&quot;v&quot;:&quot;Performance 面板&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[48,49]},&quot;v&quot;:&quot;Performance API&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[50,51]},&quot;v&quot;:&quot;Chrome lighthouse&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[52,53]},&quot;v&quot;:&quot;PageSpeed Insights&quot;}]},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:2,&quot;p&quot;:{&quot;lines&quot;:[54,55]},&quot;v&quot;:&quot;性能指标优化&quot;,&quot;c&quot;:[{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[56,57]},&quot;v&quot;:&quot;首屏加载时间First Contentful Paint （FCP）&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[58,59]},&quot;v&quot;:&quot;首次绘制时间First Paint （FP）&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[60,61]},&quot;v&quot;:&quot;最大内容绘制时间 Largest Contentful Paint （LCP）&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[62,63]},&quot;v&quot;:&quot;用户可交互时间Time to Interactive（TTI）&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[64,65]},&quot;v&quot;:&quot;页面总阻塞时间Total Blocking Time （TBT）&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[66,67]},&quot;v&quot;:&quot;搜索引擎优化Search Engine Optimization （SEO）&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[68,69]},&quot;v&quot;:&quot;258原则&quot;}]},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:2,&quot;p&quot;:{&quot;lines&quot;:[70,71]},&quot;v&quot;:&quot;打包优化&quot;,&quot;c&quot;:[{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[72,73]},&quot;v&quot;:&quot;Tree shaking&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[74,75]},&quot;v&quot;:&quot;gzip压缩&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[76,77]},&quot;v&quot;:&quot;按需引入第三方库&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[78,79]},&quot;v&quot;:&quot;第三方库CDN引入&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[80,81]},&quot;v&quot;:&quot;剔除console和debugger&quot;}]},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:2,&quot;p&quot;:{&quot;lines&quot;:[82,83]},&quot;v&quot;:&quot;图片优化&quot;,&quot;c&quot;:[{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[84,85]},&quot;v&quot;:&quot;图片懒加载&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[86,87]},&quot;v&quot;:&quot;预加载&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[88,89]},&quot;v&quot;:&quot;雪碧图&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[90,91]},&quot;v&quot;:&quot;css3代替图片&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[92,93]},&quot;v&quot;:&quot;图片压缩&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[94,95]},&quot;v&quot;:&quot;使用webp 格式的图片&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[96,97]},&quot;v&quot;:&quot;使用响应式图片&quot;}]},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:2,&quot;p&quot;:{&quot;lines&quot;:[98,99]},&quot;v&quot;:&quot;渲染优化&quot;,&quot;c&quot;:[{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[100,101]},&quot;v&quot;:&quot;避免css阻塞，优先加载css文件&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[102,103]},&quot;v&quot;:&quot;减少css过多层级嵌套&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[104,105]},&quot;v&quot;:&quot;避免js阻塞，js资源添加defer 或 async&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[106,107]},&quot;v&quot;:&quot;iconfont/svg代替图片图标&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[108,109]},&quot;v&quot;:&quot;减少重绘和回流&quot;},{&quot;t&quot;:&quot;heading&quot;,&quot;d&quot;:3,&quot;p&quot;:{&quot;lines&quot;:[110,111]},&quot;v&quot;:&quot;使用requestAnimationFrame实现动画&quot;}]}]}"></svg>
+</div>
+
+
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://xxixx.site" target="_blank">xxixx.site</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2024/01/01/2023-11-20-05/" class="pre-post btn btn-default" title='前端面试-网络和 HTTP'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            前端面试-网络和 HTTP</span>
+    </a>
+    
+    
+    <a href="/2024/01/01/2023-11-23-01/" class="next-post btn btn-default" title='手写Promise'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            手写Promise</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+    
+<div class="utteranc">
+  
+  <script
+    src='https://utteranc.es/client.js'
+    repo='sunjichang/blog-comment'
+    issue-term='pathname'
+    issue-number=''
+    theme='github-light'
+    label=''
+    crossorigin='anonymous'
+    async
+  ></script>
+</div>
+
+
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <p>暂无目录</p>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2023
+                        <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                                津ICP备2023008165号
+                            </a>
+                            
+                </span>
+                <!-- <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+<script src="/js/markmap.js"></script></body>
+</html>
